@@ -12,26 +12,34 @@ namespace OOP_02
             #region Question 1
             //Answer the following questions:
             //a) What is the difference between a class and a struct?
+            // class is a reference type so it's data is stored in the heap and it also support inheritence
+            // struct is a value type so the data is stored in the stack and doesnot support inheritence 
 
             //b) Why are classes more suitable than structs for large applications?
+            // the main and the most important reason is that classes support inheritence which improves 
+            // code reusability and maintainability and also classes are reference types so they are more efficient for large data
+
 
             #endregion
 
             #region Question 2 Consider the following code:
             //a) Which class is the parent class?
+            // shipment is the parent class
 
             //b) Which class is the child class?
+            // ExpressShipment is the child class
 
             //c) What members are inherited by ExpressShipment?
+            // string TrackingCode
 
             //d) Why is inheritance better than duplicating the same code in multiple classes?
-            //
+            //because it improves code reusability and maintainability and also reduces the chance of errors in the code
             #endregion
 
             #endregion
 
 
-        #region Part 02 : Practical (Smart Delivery Management System)
+            #region Part 02 : Practical (Smart Delivery Management System)
 
 
 
