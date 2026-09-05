@@ -138,7 +138,7 @@ namespace OOP_02
                 center.CenterName = Console.ReadLine();
                 Console.WriteLine();
 
-                // 3+6+7. Create one StandardShipment and add it
+                // 3 Create one StandardShipment and add it
                 Console.WriteLine("--- Standard Shipment Data ---");
                 StandardShipment standard = ReadStandardShipment();
                 Console.WriteLine(center.AddShipment(standard)
@@ -146,7 +146,7 @@ namespace OOP_02
                     : "Delivery center is full.");
                 Console.WriteLine();
 
-                // 4+6+7. Create one ExpressShipment and add it
+                // 4. Create one ExpressShipment and add it
                 Console.WriteLine("--- Express Shipment Data ---");
                 ExpressShipment express = ReadExpressShipment();
                 Console.WriteLine(center.AddShipment(express)
@@ -154,7 +154,7 @@ namespace OOP_02
                     : "Delivery center is full.");
                 Console.WriteLine();
 
-                // 5+6+7. Create one InternationalShipment and add it
+                // 5 Create one InternationalShipment and add it
                 Console.WriteLine("--- International Shipment Data ---");
                 InternationalShipment international = ReadInternationalShipment();
                 Console.WriteLine(center.AddShipment(international)
@@ -209,8 +209,6 @@ namespace OOP_02
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
-
-        // ---------- Helper methods to read each shipment type from the user ----------
 
         static DeliveryAddress ReadAddress()
         {
