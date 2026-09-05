@@ -5,13 +5,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace OOP_02{
-    internal struct Shipment
+    internal class Shipment
     {
         private string trackingCode;
         private string description;
-        private double weight;
+        private decimal weight;
         private decimal deliveryFee;
-
         public DeliveryAddress Destination { set; get; }
 
         public string TrackingCode
@@ -50,7 +49,7 @@ namespace OOP_02{
             }
         }
 
-        public double Weight
+        public decimal Weight
         {
             get
             {
@@ -82,7 +81,9 @@ namespace OOP_02{
             }
         }
 
-        public double EstimateCost => (double)DeliveryFee + (Weight * 5);
+        public virtual decimal EstimatedCost => DeliveryFee + (Weight * 5);
+
+        public virtual string ShipmentTypeName => "Shipment";
 
         public Shipment(string trackingCode)
         {
@@ -93,7 +94,7 @@ namespace OOP_02{
             Destination = new DeliveryAddress("Unknown", "Unknown", 0);
         }
 
-        public Shipment(string trackingCode, string description, double weight, decimal deliveryFee, DeliveryAddress destination)
+        public Shipment(string trackingCode, string description, decimal weight, decimal deliveryFee, DeliveryAddress destination)
         {
             TrackingCode = string.IsNullOrWhiteSpace(trackingCode) ? "UNKNOWN" : trackingCode;
             Description = string.IsNullOrWhiteSpace(description) ? "Unknown" : description;
@@ -108,14 +109,19 @@ namespace OOP_02{
                 DeliveryFee = newFee;
         }
 
-        public void PrintShipment()
+        protected virtual void PrintExtraDetails()
+        {
+
+        }
+
+        public virtual void PrintShipment()
         {
             Console.WriteLine($"Traching Code: {TrackingCode}");
             Console.WriteLine($"Description: {Description}");
             Console.WriteLine($"Weight: {Weight} KG");
             Console.WriteLine($"DeliveryFee: {DeliveryFee} EGP");
             Console.WriteLine($"Destination: {Destination.GetFullAddress()} ");
-            Console.WriteLine($"EstimateCost: {EstimateCost} EGP");
+            Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
         }
 
     }

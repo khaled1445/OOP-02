@@ -5,12 +5,12 @@ using System.Text;
 
 namespace OOP_02
 {
-    internal struct DeliveryCenter
+    internal class DeliveryCenter
     {
-        private Shipment[] shipments;
-        private const int capacity = 10;
-        private int count;
+        private const int capacity = 20;
+        private Shipment[] shipments = new Shipment[capacity];
 
+        public string CenterName { get; set; }
         public int Count { get; set; }
         public Shipment this[int index]
         {
@@ -61,20 +61,45 @@ namespace OOP_02
 
         public bool AddShipment(Shipment shipment)
         {
-            if (shipments == null)
-                shipments = new Shipment[capacity];
-
             for (int i = 0; i < shipments.Length; i++)
             {
-                if (shipments[i].TrackingCode == null)
+                if (shipments[i] == null)
                 {
                     shipments[i] = shipment;
-                    Console.WriteLine("added succesfully");
                     return true;
                 }
             }
             return false;
+        }
 
+        public bool RemoveShipment(string trackingCode)
+        {
+            for (int i = 0; i < shipments.Length; i++)
+            {
+                if (shipments[i] != null &&
+                    shipments[i].TrackingCode.Equals(trackingCode, StringComparison.OrdinalIgnoreCase))
+                {
+                    shipments[i] = null;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void PrintAllShipments()
+        {
+            foreach (var shipment in shipments)
+            {
+                if (shipment == null)
+                    continue;
+
+                Console.WriteLine(shipment.ShipmentTypeName);
+                Console.WriteLine();
+                shipment.PrintShipment();
+                Console.WriteLine();
+                Console.WriteLine(new string('-', 50));
+                Console.WriteLine();
+            }
         }
     }
 }

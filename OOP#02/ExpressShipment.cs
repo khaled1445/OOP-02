@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OOP_02
+{
+    internal class ExpressShipment : Shipment
+    {
+        private decimal extraFee;
+
+        public decimal ExtraFee
+        {
+            get { return extraFee; }
+            set
+            {
+                if (value >= 0)
+                    extraFee = value;
+            }
+        }
+
+        public override string ShipmentTypeName => "Express Shipment";
+
+        public override decimal EstimatedCost => base.EstimatedCost + ExtraFee;
+
+        public ExpressShipment(string trackingCode, string description, decimal weight,
+                                decimal deliveryFee, DeliveryAddress destination, decimal extraFee)
+            : base(trackingCode, description, weight, deliveryFee, destination)
+        {
+            ExtraFee = extraFee >= 0 ? extraFee : 0;
+        }
+
+        protected override void PrintExtraDetails()
+        {
+            Console.WriteLine($"Extra Fee     : {ExtraFee} EGP");
+        }
+    }
+}
